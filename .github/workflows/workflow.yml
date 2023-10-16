@@ -47,10 +47,12 @@ jobs:
         name: app
         path: app
        
-     - name: Deploy API app
+     - name: Deploy app
        uses: appleboy/ssh-action@master
        with:
         host: ${{secrets.SSH_HOST}}
         key: ${{secrets.SSH_KEY}}
         username: ${{secrets.SSH_USERNAME}}
+        rm: true
+        target: "/var/deploy"
         
