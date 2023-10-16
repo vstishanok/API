@@ -1,0 +1,37 @@
+name: Build ASP.Net Core apps
+
+on:
+  push:
+    branches: [ "master" ]
+    
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '7.x'
+        include-prerelease: true
+        
+    - name: Restore dependencies
+      run: dotnet restore
+      
+    - name: Build
+      run: dotnet build --no-restore
+      
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+
+    - name: Dotnet publish
+      run: dotnet publish WebAPI/WebAPI.csproj -c Release -o website
+
+    - name: Upload artifact for deployment job
+      uses: actions/upload-artifact@v3.1.3
+      with:
+       name: website
+       path: /home/runner/work/WebAPI/WebAPI/website/
+       if-no-files-found: Error! Files not found!
