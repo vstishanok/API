@@ -27,7 +27,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
 
-    - name: Dotnet publish
+    - name: Publish
       run: dotnet publish -c Release --property PublishDir=${{env.PUBLISH_DIR}}/app
 
     - name: Upload artifact
