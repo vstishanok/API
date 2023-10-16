@@ -41,25 +41,20 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - uses: actions/checkout@v2
-          
-      - name: SFTP Deploy
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.1
-        with:
-          username: root
-          server: ${{secrets.SSH_HOST}}
-          port: 22
-          ssh_private_key: ${{secrets.SSH_KEY}}
- 
-          
-          # will put all file under this path
-          local_path: ./* # default is ./*
-          # files will copy to under remote_path
-          remote_path: /var/www
-          
-          # sftp args
-          args: '-o ConnectTimeout=5'
+      - name: Set up SSH key
+        run: |
+          env
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p 22 -t ed25519 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy to server or Storage Box
+        run: |
+          rsync -azP -e "ssh -i $HOME/.ssh/id_ed25519 -p 22" ./your-artifact.ext ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/path/to/destination/your-artifact.ext
 
 
         
