@@ -27,11 +27,11 @@ jobs:
       run: dotnet test --no-build --verbosity normal
 
     - name: Dotnet publish
-      run: dotnet publish WebAPI/WebAPI.csproj -c Release -o website
+      run: dotnet publish WebAPI/WebAPI.csproj -c Release
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v3.1.3
       with:
        name: website
-       path: /home/runner/work/WebAPI/WebAPI/website/
+       path: /home/runner/work/WebAPI/WebAPI/
        if-no-files-found: Error! Files not found!
