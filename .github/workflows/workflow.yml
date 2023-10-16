@@ -28,7 +28,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
 
     - name: Publish
-      run: dotnet publish API/WebAPI.csproj -c Release -o app
+      run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3.1.3
