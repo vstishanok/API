@@ -42,7 +42,7 @@ jobs:
     
     steps:
      - name: Download a Build Artifact
-       uses: actions/download-artifact@v3
+       uses: actions/checkout@master
        with:
         name: app
         path: app
@@ -53,6 +53,7 @@ jobs:
         host: ${{secrets.SSH_HOST}}
         key: ${{secrets.SSH_KEY}}
         username: ${{secrets.SSH_USERNAME}}
-        rm: true
+        port: 22
+        source: "/home/runner/work/API/API/app/*"
         target: "/var/deploy"
         
