@@ -56,5 +56,5 @@ jobs:
         script: |
          mkdir test
          cd test
-         git clone git@github.com:A-r-t-K/SimplePipline.git
+         git clone git@github.com:vstishanok/API.git
          echo 'good'
