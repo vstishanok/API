@@ -69,4 +69,5 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
+           export XDG_RUNTIME_DIR=/run/user/$(id -u)
            sudo systemctl --user restart app.service        
