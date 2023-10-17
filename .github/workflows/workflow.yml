@@ -43,6 +43,8 @@ jobs:
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v3
+        with: 
+         name: app
 
       - name: Set up SSH key
         run: |
