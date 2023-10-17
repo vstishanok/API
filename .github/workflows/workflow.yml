@@ -69,6 +69,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           port: 22
-          script: 
+          script: |
             export XDG_RUNTIME_DIR=/run/user/$(id -u)
             systemctl --user restart app.service
