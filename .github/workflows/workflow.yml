@@ -71,4 +71,4 @@ jobs:
           port: 22
           script: |
             export XDG_RUNTIME_DIR=/run/user/$(id -u)
-            systemctl --user restart app.service
+            systemctl --user stop app.service
