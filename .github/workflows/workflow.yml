@@ -64,6 +64,7 @@ jobs:
 
       - name: Restart app
         run: |
+          export XDG_RUNTIME_DIR=/root/app/$(id -u)
           systemctl --user restart app.service
 
 
