@@ -46,6 +46,9 @@ jobs:
         with: 
          name: app
 
+      - name: Display structure of downloaded files
+        run: ls -R
+
       - name: Set up SSH key
         run: |
           env
