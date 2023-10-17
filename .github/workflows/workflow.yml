@@ -63,9 +63,8 @@ jobs:
           rsync -azP -e "ssh -i $HOME/.ssh/id_ed25519 -p 22" ./app ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/
 
       - name: Restart app
-        run: |
-          export XDG_RUNTIME_DIR=/run/user/$(id -u)
-          systemctl --user restart app.service
+        run: ssh id_ed25519 'sudo systemctl --user restart app.service'
+          
 
 
         
