@@ -7,16 +7,16 @@ namespace WebAPI.Controllers
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries =
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+            {
+                "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            };
 
         [HttpGet]
-        public IActionResult Get()
+        public string Get()
         {
             var randomIndex = new Random().Next(0, Summaries.Length);
 
-            return Ok(Summaries[randomIndex]);
+            return Summaries[randomIndex];
         }
     }
 }
