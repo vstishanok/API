@@ -34,6 +34,8 @@ jobs:
        DEFAULT_BRANCH: master
        VALIDATE_ALL_CODEBASE: true
        VALIDATE_DOTNET_DOTNET_FORMAT: true
+       VALIDATE_YAML: false
+       GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
       
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
