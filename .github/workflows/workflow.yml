@@ -28,11 +28,13 @@ jobs:
       run: dotnet test --no-build --verbosity normal
 
     - name: Run linters
-      uses: wearerequired/lint-action@v2
+      id: format
+      uses: xt0rted/dotnet-format@v1.0.2
       with:
-        dotnet_format: true
-        github_token: ${{ secrets.TOKEN_GITHUB }}
-        continue_on_error: false
+        repo-token: ${{ secrets.TOKEN_GITHUB }}
+        action: "fix"
+        only-changed-files: true
+        folder: "."
       
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
