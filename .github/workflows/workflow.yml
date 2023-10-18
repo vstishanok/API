@@ -29,8 +29,11 @@ jobs:
 
     - name: Run lint
       uses: super-linter/super-linter@v5
-      with:
+      env:
        DEFAULT_WORKSPACE: WebAPI/WebAPI.csproj
+       DEFAULT_BRANCH: master
+       VALIDATE_ALL_CODEBASE: true
+       VALIDATE_DOTNET_DOTNET_FORMAT: true
       
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
