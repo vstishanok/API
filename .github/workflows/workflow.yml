@@ -27,6 +27,11 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
 
+    - name: Run linter
+      uses: wearerequired/lint-action@v1
+      with:
+        github_token: ${{ secrets.TOKEN_GITHUB }}
+
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
 
