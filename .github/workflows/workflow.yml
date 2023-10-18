@@ -35,7 +35,6 @@ jobs:
       uses: xt0rted/dotnet-format@v1
       with:
         action: "fix"
-        only-changed-files: true
       
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
