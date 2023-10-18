@@ -27,12 +27,11 @@ jobs:
     - name: Run tests
       run: dotnet test --no-build --verbosity normal
 
-    - name: Restore dotnet tools
-      uses: xt0rted/dotnet-tool-restore@v1
-
-    - name: Run dotnet format
-      id: format
-      uses: xt0rted/dotnet-format@v1
+    - name: Run lint
+      uses: zyactions/dotnet-lint@v1
+      with:
+       workspace: test
+       implicit-restore: true
       
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
