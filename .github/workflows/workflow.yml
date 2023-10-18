@@ -33,8 +33,6 @@ jobs:
     - name: Run dotnet format
       id: format
       uses: xt0rted/dotnet-format@v1
-      with:
-        action: "fix"
       
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
