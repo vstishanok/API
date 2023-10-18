@@ -21,16 +21,16 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
       
-    - name: Build
+    - name: Rub build
       run: dotnet build --no-restore
       
-    - name: Test
+    - name: Run tests
       run: dotnet test --no-build --verbosity normal
 
-    - name: Run linter
-      uses: wearerequired/lint-action@v1
+    - name: Run linters
+      uses: wearerequired/lint-action@v2
       with:
-        github_token: ${{ secrets.TOKEN_GITHUB }}
+        dotnet_format: true
 
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
@@ -60,7 +60,7 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -p 22 -t ed25519 ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Stop application on server
+      - name: Stop application
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -75,7 +75,7 @@ jobs:
         run: |
           rsync -azP -e "ssh -i $HOME/.ssh/id_ed25519 -p 22" ./app ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:~/
 
-      - name: Start application on server
+      - name: Start application
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
