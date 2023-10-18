@@ -30,7 +30,7 @@ jobs:
     - name: Run lint
       uses: super-linter/super-linter@v5
       with:
-       workspace: WebAPI/WebAPI.csproj
+       DEFAULT_WORKSPACE: WebAPI/WebAPI.csproj
       
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
