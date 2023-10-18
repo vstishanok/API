@@ -28,11 +28,9 @@ jobs:
       run: dotnet test --no-build --verbosity normal
 
     - name: Restore dotnet tools
-      if: steps.command.outputs.command-name
       uses: xt0rted/dotnet-tool-restore@v1
 
     - name: Run dotnet format
-      if: steps.command.outputs.command-name && steps.command.outputs.command-arguments == 'format'
       id: format
       uses: xt0rted/dotnet-format@v1
       with:
