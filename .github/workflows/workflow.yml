@@ -31,7 +31,9 @@ jobs:
       uses: wearerequired/lint-action@v2
       with:
         dotnet_format: true
-
+        github_token: ${{ secrets.TOKEN_GITHUB }}
+        continue_on_error: false
+      
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
 
