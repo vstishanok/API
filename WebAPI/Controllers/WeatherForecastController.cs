@@ -15,7 +15,6 @@ namespace WebAPI.Controllers
         public IActionResult Get()
         {
             var randomIndex = new Random().Next(0, Summaries.Length);
-            
             return Ok(new { Weather = Summaries[randomIndex] });
         }
     }
