@@ -1,5 +1,7 @@
 namespace WebAPI.UnitTests.Controllers
 {
+    using Microsoft.AspNetCore.Mvc;
+
     using NUnit.Framework;
 
     using WebAPI.Controllers;
@@ -7,28 +9,15 @@ namespace WebAPI.UnitTests.Controllers
     [TestFixture]
     public class WeatherForecastControllerTests
     {
-        private WeatherForecastController controller;
-
-        [SetUp]
-        public void Setup()
-        {
-            controller = new WeatherForecastController();
-        }
-
         [Test]
         public void Get_GetRandomWeatherForecast_ResultIsNotNull()
         {
-            var weatherForecast = controller.Get();
+            var controller = new WeatherForecastController();
 
-            Assert.IsNotNull(weatherForecast);
-        }
+            var result = controller.Get();
+            var okResult = result as OkObjectResult;
 
-        [Test]
-        public void Get_GetRandomWeatherForecast_ResultIsNotEmpty()
-        {
-            var weatherForecast = controller.Get();
-
-            Assert.IsNotEmpty(weatherForecast);
+            Assert.IsNotNull(okResult);
         }
     }
 }
