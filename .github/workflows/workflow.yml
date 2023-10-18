@@ -28,10 +28,9 @@ jobs:
       run: dotnet test --no-build --verbosity normal
 
     - name: Run lint
-      uses: zyactions/dotnet-lint@v1
+      uses: super-linter/super-linter@v5
       with:
        workspace: WebAPI/WebAPI.csproj
-       implicit-restore: true
       
     - name: Publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
