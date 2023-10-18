@@ -30,7 +30,7 @@ jobs:
     - name: Run lint
       uses: zyactions/dotnet-lint@v1
       with:
-       workspace: API
+       workspace: WebAPI/WebAPI.csproj
        implicit-restore: true
       
     - name: Publish
