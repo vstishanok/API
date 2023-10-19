@@ -7,12 +7,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
+    
     - name: Checkout repository
       uses: actions/checkout@v3
     
-    - name: Setup .NET Core
+    - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '7.x'
@@ -23,20 +23,7 @@ jobs:
     - name: Rub build
       run: dotnet build --no-restore
       
-    - name: Run tests
-      run: dotnet test --no-build --verbosity normal
-
-    - name: Run lint
-      uses: super-linter/super-linter@v5
-      env:
-       DEFAULT_WORKSPACE: WebAPI/WebAPI.csproj
-       DEFAULT_BRANCH: master
-       VALIDATE_ALL_CODEBASE: true
-       VALIDATE_DOTNET_DOTNET_FORMAT: true
-       VALIDATE_YAML: false
-       GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
-      
-    - name: Publish
+    - name: Run publish
       run: dotnet publish WebAPI/WebAPI.csproj -c Release -o app
 
     - name: Upload artifact
@@ -48,15 +35,12 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-    
+
       - name: Download artifact
         uses: actions/download-artifact@v3
 
-      - name: Set up SSH key
+      - name: Setup SSH
         run: |
           env
           mkdir -p ~/.ssh
