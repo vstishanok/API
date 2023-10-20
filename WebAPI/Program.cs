@@ -7,7 +7,6 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 app.UseHttpsRedirection();
-
 app.MapControllers();
 
 app.UseCors(options => options
